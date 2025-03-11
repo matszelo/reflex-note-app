@@ -6,5 +6,6 @@ def navbar() -> rx.Component:
             rx.avatar(fallback="RX", color_scheme="orange"),
             rx.heading("App name", size="8"),
             spacing="2",
-        )    
+        ),   
+        margin_bottom="20px",
     )
