@@ -1,5 +1,4 @@
 import reflex as rx
-from .. import note
 
 from .state import NoteState
 
@@ -30,6 +29,9 @@ def note_form() -> rx.Component:
                         "Submit", 
                         type="submit",
                         color_scheme="orange",
+                        on_click=rx.toast.success(
+                            "Note added successfully", duration=5000
+                        ),
                     ),
                 ),
                 spacing="3",

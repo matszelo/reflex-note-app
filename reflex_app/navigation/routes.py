@@ -1,0 +1,3 @@
+HOME_ROUTE="/"
+ABOUT_ROUTE="/about"
+NOTE_ROUTE="/note"

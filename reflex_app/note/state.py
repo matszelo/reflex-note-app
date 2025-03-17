@@ -2,6 +2,7 @@ import reflex as rx
 from .model import NoteEntryModel
 from sqlmodel import select
 from typing import List
+from .. import navigation
 
 class NoteState(rx.State):
     form_data: dict = {}
@@ -20,7 +21,7 @@ class NoteState(rx.State):
             )
             session.add(db_entry)
             session.commit()
-        return rx.redirect("/")
+            return rx.redirect(navigation.routes.HOME_ROUTE)
 
     def list_notes(self):
         with rx.session() as session:
@@ -28,5 +29,3 @@ class NoteState(rx.State):
                 select(NoteEntryModel)
             ).all()
             self.notes = notes
-            
-                
