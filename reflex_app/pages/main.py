@@ -3,17 +3,33 @@ from ..UI.base import base
 from ..note import state, model
 from .. import note, navigation
 
+def note_detail_link(child: rx.Component, note: model.NoteEntryModel):
+    if note is None:
+        return rx.fragment(child)
+    note_id = note.id
+    if note_id is None:
+        return rx.fragment(child)
+    root_path = navigation.routes.NOTE_ROUTE
+    note_detail_url = f"{root_path}/{note_id}"
+    return rx.link(
+        child,
+        href=note_detail_url
+    )        
+
 def note_entry_list_item(note: model.NoteEntryModel) -> rx.Component:
-    return rx.card(
-        rx.flex(
-            rx.vstack(
-                rx.text(note.title),
-                rx.text(note.text, size="2"),
-            ),    
+    return note_detail_link(
+        rx.card(
+            rx.flex(
+                rx.vstack(
+                    rx.heading(note.title, size="4", underline="none", weight="bold", color_scheme="gray", high_contrast=True),
+                    rx.text(note.text, size="2", underline="none", color_scheme="gray", high_contrast=True), 
+                ),
+            ),
+            height="200px",       
         ),
-        height="200px",
-        on_click=navigation.NavState.to_note,
+        note,
     )
+
 
 def Main_page() -> rx.Component:
     my_form = note.note_form()

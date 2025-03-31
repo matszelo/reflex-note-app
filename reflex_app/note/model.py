@@ -9,11 +9,11 @@ def get_utc_now() -> datetime:
 class NoteEntryModel(rx.Model, table=True):
     title: str
     text: str | None = None
-    created_at: datetime = Field(
-        default_factory=get_utc_now,
-        sa_type=sqlalchemy.DateTime(timezone=True),
-        sa_column_kwargs={
-            'server_default': sqlalchemy.func.now()
-        },
-        nullable=False
-    )
+    #created_at: datetime = Field(
+        #default_factory=get_utc_now,
+        #sa_type=sqlalchemy.DateTime(timezone=True),
+        #sa_column_kwargs={
+            #'server_default': sqlalchemy.func.now()
+        #},
+        #nullable=False
+    #) 
