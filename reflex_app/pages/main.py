@@ -21,11 +21,10 @@ def note_entry_list_item(note: model.NoteEntryModel) -> rx.Component:
         rx.card(
             rx.flex(
                 rx.vstack(
-                    rx.heading(note.title, size="4", underline="none", weight="bold", color_scheme="gray", high_contrast=True),
-                    rx.text(note.text, size="2", underline="none", color_scheme="gray", high_contrast=True), 
+                    rx.heading(note.title, size="8", underline="none", weight="bold", color_scheme="gray", high_contrast=True),
                 ),
             ),
-            height="200px",       
+            height="100px",       
         ),
         note,
     )
@@ -34,8 +33,8 @@ def note_entry_list_item(note: model.NoteEntryModel) -> rx.Component:
 def Main_page() -> rx.Component:
     my_form = note.note_form()
     my_child = rx.flex(
-            rx.alert_dialog.root(
-                rx.alert_dialog.trigger(
+            rx.dialog.root(
+                rx.dialog.trigger(
                     rx.box(
                         rx.button(
                             rx.icon("notebook-pen"),
@@ -47,14 +46,14 @@ def Main_page() -> rx.Component:
                         ),
                     ),
                 ),
-                rx.alert_dialog.content(
-                    rx.alert_dialog.title(
+                rx.dialog.content(
+                    rx.dialog.title(
                         "Write new note",
                     ),
                     my_form
                 ),
             ),
-            rx.box(
+            rx.box( 
                 rx.desktop_only(   
                     rx.grid(
                         rx.foreach(state.NoteState.notes, note_entry_list_item),

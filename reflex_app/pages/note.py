@@ -6,8 +6,8 @@ from ..note import state
 def Note_page() -> rx.Component:
     my_form = note.edit_form()
     my_child = rx.flex(
-        rx.alert_dialog.root(
-            rx.alert_dialog.trigger(
+        rx.dialog.root(
+            rx.dialog.trigger(
                 rx.box(
                     rx.button(
                         rx.icon("notebook-pen"),
@@ -19,8 +19,8 @@ def Note_page() -> rx.Component:
                     ),
                 ),
             ),
-            rx.alert_dialog.content(
-                rx.alert_dialog.title(
+            rx.dialog.content(
+                rx.dialog.title(
                     "Edit note",
                 ),
                 my_form
@@ -34,6 +34,7 @@ def Note_page() -> rx.Component:
                 ),
             ),
             width="100%",
-        ),   
+        ),
+        direction="column",   
     ),          
     return base(my_child)

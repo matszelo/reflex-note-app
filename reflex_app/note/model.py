@@ -7,7 +7,7 @@ def get_utc_now() -> datetime:
     return datetime.now(timezone.utc)
 
 class NoteEntryModel(rx.Model, table=True):
-    title: str
+    title: str 
     text: str | None = None
     #created_at: datetime = Field(
         #default_factory=get_utc_now,

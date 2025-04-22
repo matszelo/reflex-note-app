@@ -34,7 +34,7 @@ class NoteState(rx.State):
         for k,v in form_data.items():
             if v == "" or v is None:
                 continue
-            data[k] = v   
+            data[k] = v    
         with rx.session() as session:
             db_entry = NoteEntryModel(
                 **form_data
@@ -42,6 +42,22 @@ class NoteState(rx.State):
             session.add(db_entry)
             session.commit()
             return rx.redirect(navigation.routes.HOME_ROUTE)
+
+    def delete(self):
+        with rx.session() as session:
+            if self.note_detail_id == "":
+                self.note = None
+                return
+            note = session.exec(
+                select(NoteEntryModel).where(
+                    NoteEntryModel.id == self.note_detail_id
+                )
+            ).one_or_none()
+            self.note = note
+            session.delete(note)
+            session.commit()   
+            return rx.redirect(navigation.routes.HOME_ROUTE)
+         
         
     def save_note_edits(self, note_id:int, updated_data:dict):
         with rx.session() as session:

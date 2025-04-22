@@ -14,23 +14,22 @@ def note_form() -> rx.Component:
                 placeholder="Text",
                 name="text",
                 resize="vertical",
+                height="200px"
             ),
             rx.flex(
-                rx.alert_dialog.cancel(
+                rx.dialog.close(
                     rx.button(
                         "Cancel",
                         variant="soft",
                         color_scheme="gray",
                     ),
                 ),
-                rx.alert_dialog.action(
+                rx.dialog.close(
                     rx.button(
                         "Submit", 
                         type="submit",
                         color_scheme="orange",
-                        on_click=rx.toast.success(
-                            "Note added successfully", duration=5000
-                        ),
+                        on_click=rx.toast.success("Note added successfully", duration=5000),
                     ),
                 ),
                 spacing="3",
